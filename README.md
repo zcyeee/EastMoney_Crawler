@@ -8,9 +8,9 @@
 
 ## 主要功能
 
-1. 爬取指定股票股吧中的发帖信息，包括帖子标题，浏览量，评论数，帖子链接，发帖时间 (YYYY-MM-DD, HH: MM)，以 `post_XXXXXX` 为集合名储存到 MongoDB 中。
+1. 爬取指定股票股吧中的**发帖信息**，包括帖子标题，浏览量，评论数，帖子链接，发帖时间 (YYYY-MM-DD, HH: MM)，以 `post_XXXXXX` 为集合名储存到 MongoDB 中。
 
-2. 爬取指定时间范围中股吧帖子下的评论信息，包括评论内容，是一级或二级评论，点赞数，发帖时间 (YYYY-MM-DD, HH: MM)，以 `comment_XXXXXX` 为集合名储存到 MongoDB 中。
+2. 爬取指定时间范围中股吧帖子下的**评论信息**，包括评论内容，是一级或二级评论，点赞数，发帖时间 (YYYY-MM-DD, HH: MM)，以 `comment_XXXXXX` 为集合名储存到 MongoDB 中。
 
 3. 可以通过 `post_XXXXXX` 下的 `_id` 与 `comment_XXXXXX` 下的 `post_id` 建立映射关系，对帖子标题和评论内容进行匹配。
 
