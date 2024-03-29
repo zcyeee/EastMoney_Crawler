@@ -104,18 +104,21 @@ thread2 = threading.Thread(target=comment_thread_date, args=('000729', '2020-01-
   <img src="image/评论界面.png" width="75%">
 </p>
 
-3. 爬取进度与报错展示
+3. 爬取进度与报错提醒
 
 <p align="center">
-<img src="image/进度展示.jpg" width="40%"> 
+<img src="image/进度展示.jpg" width="60%"> 
 </p>
 <p align="center">
-<img src="image/报错展示.jpg" width="50%">
+<img src="image/报错展示.jpg" width="60%">
 </p>
-
-4. 报错展示
-
 
 5. 爬取结果
 
+<p align="center">
+<img src="image/发帖信息.png" width="75%"> 
+</p>
+<p align="center">
+<img src="image/评论信息.png" width="75%">
+</p>
 
