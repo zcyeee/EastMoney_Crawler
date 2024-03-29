@@ -116,9 +116,9 @@ thread2 = threading.Thread(target=comment_thread_date, args=('000729', '2020-01-
 5. 爬取结果
 
 <p align="center">
-<img src="image/发帖信息.png" width="85%"> 
+<img src="image/发帖信息.png" width="90%"> 
 </p>
 <p align="center">
-<img src="image/评论信息.png" width="85%">
+<img src="image/评论信息.png" width="90%">
 </p>
 
