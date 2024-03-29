@@ -4,7 +4,7 @@
 
 该项目使用 selenium 模拟用户操作抓取股吧 **发帖** 和 **评论** 数据（允许多线程同时抓取多支股票的相关信息），并将抓取到的数据储存到 MongoDB 中，方便后续使用。
 
-附加说明：非科班新手第一次写爬虫，代码效率一般（比如未使用 redis 做消息队列等），适合新手入门或非大规模爬取。以后若有能力与时间会对代码进行迭代维护，提高爬取效率，同时欢迎各位大佬提 [issue](https://github.com/zcyeee/EastMoney_Crawler/issues)。
+附加说明：非科班新手第一次写爬虫，代码效率一般（比如未使用 redis 做消息队列等等），适合新手入门或非大规模爬取。以后若有能力与时间会对代码进行迭代维护，提高爬取效率，同时欢迎各位大佬提 [issue](https://github.com/zcyeee/EastMoney_Crawler/issues)。
 
 ## 主要功能
 
@@ -52,12 +52,43 @@
 
 可以直接 `git clone` 或 `Download ZIP` ，或者点击 [release]() 下载。
 
-### 2. MongoDB安装，创建名为xxx的数据库
+### 2. MongoDB 安装
 
-### 3. Webdriver安装
+若没有 MongoDB，需要先下载，mac 推荐直接使用 `homebrew` 进行安装（[官网教程](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/)）。
 
-### 4. main中修改参数
+安装后记得在终端中启动 MongoDB，命令如下：
+```
+brew services start mongodb-community@5.0
+```
+如果 MongoDB 运行在本地计算机上，而且也没有修改端口或者添加用户名及密码，那么不需要进行任何操作；若有更改，则需在 `mongodb.py` 中修改对应参数。
 
+最后在 MongoDB 中创建两个数据库 `post_info` 和 `comment_info` ，分别用来储存 **发帖信息** 和 **评论信息**。
+
+### 3. Webdriver 安装
+
+在电脑上下载 `Chromedriver` ，版本需要与 `Chrome` 一致，安装教程见 [Chromedriver (mac)](https://zhuanlan.zhihu.com/p/657757693)，[Chromedriver (win)](https://blog.csdn.net/weixin_45109684/article/details/117650036)。
+
+### 4. 运行 main.py
+
+进入主程序 `main.py` ，安装没有安装的包，对参数进行修改（ `main.py` 中有相关参数的解释）即可开始爬取（**注意在爬取评论信息前需要先爬取发帖信息**）。
+
+a. 爬取发帖信息参数设置示例:
+```
+thread1 = threading.Thread(target=post_thread, args=('000333', 500))  # 设置想要爬取的股票代码和页数
+thread2 = threading.Thread(target=post_thread, args=('000729', 500))  # 可同时进行多个线程
+```
+第一个参数为 `stock_symbol` ，第二个参数为 `page` 。`thread1` 表示爬取 `000333` 股吧的 500 页帖子信息。 
+
+b. 爬取评论信息参数设置示例：
+```
+thread1 = threading.Thread(target=comment_thread_date, args=('000333', '2020-01-01', '2023-12-31'))
+thread2 = threading.Thread(target=comment_thread_date, args=('000729', '2020-01-01', '2023-12-31'))
+```
+第一个参数为 `stock_symbol` ，第二个参数为 `start_date` ，第二个参数为 `end_date` 。`thread1` 表示爬取 `2020-01-01` 到 `2023-12-31` 范围中 `000333` 股吧帖子下的评论信息。
+
+### 5. 查看数据
+
+爬取成功后，帖子相关信息以 `post_XXXXXX` 为集合名储存在 `post_info` 数据库中，评论相关信息以 `comment_XXXXXX` 为集合名储存在 `comment_info` 数据库中。
 
 ## 附录
 
