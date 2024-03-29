@@ -92,6 +92,14 @@ thread2 = threading.Thread(target=comment_thread_date, args=('000729', '2020-01-
 
 ## 附录
 
+1. 股吧发帖界面
 
+2. 股吧评论界面
+
+3. 爬取进度
+
+4. 报错展示
+
+5. 爬取结果
 
 
