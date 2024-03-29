@@ -94,11 +94,27 @@ thread2 = threading.Thread(target=comment_thread_date, args=('000729', '2020-01-
 
 1. 股吧发帖界面
 
+<p align="center">
+  <img src="image/发帖界面.png" width="75%">
+</p>
+
 2. 股吧评论界面
 
-3. 爬取进度
+<p align="center">
+  <img src="image/评论界面.png" width="75%">
+</p>
+
+3. 爬取进度与报错展示
+
+<p align="center">
+<img src="image/进度展示.jpg" width="40%"> 
+</p>
+<p align="center">
+<img src="image/报错展示.jpg" width="50%">
+</p>
 
 4. 报错展示
+
 
 5. 爬取结果
 
