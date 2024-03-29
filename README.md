@@ -113,12 +113,12 @@ thread2 = threading.Thread(target=comment_thread_date, args=('000729', '2020-01-
 <img src="image/报错展示.jpg" width="60%">
 </p>
 
-5. 爬取结果
+5. 爬取结果（**发帖信息** 和 **评论信息**）
 
 <p align="center">
-<img src="image/发帖信息.png" width="90%"> 
+<img src="image/发帖信息.png" width="95%"> 
 </p>
 <p align="center">
-<img src="image/评论信息.png" width="90%">
+<img src="image/评论信息.png" width="95%">
 </p>
 
