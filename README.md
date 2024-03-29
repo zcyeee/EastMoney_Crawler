@@ -50,11 +50,13 @@
 
 ### 1. 下载代码
 
+可以直接 `git clone` 或 `Download ZIP` ，或者点击 [release]() 下载。
+
 ### 2. MongoDB安装，创建名为xxx的数据库
 
-### 3.Webdriver安装
+### 3. Webdriver安装
 
-### 4.main中修改参数
+### 4. main中修改参数
 
 
 ## 附录
