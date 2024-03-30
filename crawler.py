@@ -168,7 +168,7 @@ class CommentCrawler(object):
                     dic_list.append(dic)
 
                     if parser.judge_sub_comment(item):  # means it has sub-comments
-                        sub_reply_items = self.browser.find_elements(By.CSS_SELECTOR, 'li.reply_item_l2')
+                        sub_reply_items = item.find_elements(By.CSS_SELECTOR, 'li.reply_item_l2')
 
                         for subitem in sub_reply_items:
                             dic = parser.parse_comment_info(subitem, id_df.iloc[self.current_num].item(), True)
