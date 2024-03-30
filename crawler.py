@@ -159,7 +159,7 @@ class CommentCrawler(object):
                 except TimeoutException:  # timeout situation
                     self.browser.refresh()
                 finally:
-                    reply_items = self.browser.find_elements(By.CSS_SELECTOR, 'div.reply_item.cl')
+                    reply_items = self.browser.find_elements(By.CSS_SELECTOR, 'div.allReplyList > div.reply_item.cl')  # some have hot reply list avoid fetching twice
 
                 dic_list = []  # as batch insert is more efficient than insert one
                 for item in reply_items:
