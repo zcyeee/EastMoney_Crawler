@@ -101,6 +101,7 @@ class CommentCrawler(object):
         options.add_argument('user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, '
                              'like Gecko) Chrome/111.0.0.0 Safari/537.36"')
         self.browser = webdriver.Chrome(options=options)
+        # self.browser.set_page_load_timeout(2)  # set the timeout restrict
 
         current_dir = os.path.dirname(os.path.abspath(__file__))  # hide the features of crawler/selenium
         js_file_path = os.path.join(current_dir, 'stealth.min.js')
@@ -149,7 +150,7 @@ class CommentCrawler(object):
 
         for url in url_df:
             try:
-                time.sleep(abs(random.normalvariate(0.01, 0.01)))  # random sleep time
+                time.sleep(abs(random.normalvariate(0.03, 0.01)))  # random sleep time
 
                 try:  # sometimes the website needs to be refreshed (situation comment is loaded unsuccessfully)
                     self.browser.get(url)  # this function may also get timeout exception
