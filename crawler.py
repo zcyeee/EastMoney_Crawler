@@ -158,6 +158,7 @@ class CommentCrawler(object):
                         EC.presence_of_element_located((By.CSS_SELECTOR, 'div.reply_item.cl')))
                 except TimeoutException:  # timeout situation
                     self.browser.refresh()
+                    print('------------ refresh ------------')
                 finally:
                     reply_items = self.browser.find_elements(By.CSS_SELECTOR, 'div.allReplyList > div.replylist_content > div.reply_item.cl')  # some have hot reply list avoid fetching twice
 
