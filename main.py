@@ -1,7 +1,6 @@
 from crawler import PostCrawler
 from crawler import CommentCrawler
 import threading
-import time
 
 
 def post_thread(stock_symbol, page):  # stock_symbol为股票的代码，page指想要爬取的帖子的页数（从第一页开始）
@@ -22,7 +21,6 @@ def comment_thread_id(stock_symbol, start_id, end_id):  # stock_symbol为股票�
 
 
 if __name__ == "__main__":
-    start_time = time.time()
 
     # 爬取发帖信息
     thread1 = threading.Thread(target=post_thread, args=('000333', 500))  # 设置想要爬取的股票代码和页数
@@ -42,5 +40,4 @@ if __name__ == "__main__":
     thread1.join()
     thread2.join()
 
-    end_time = time.time()
-    print(f"time cost: {end_time - start_time}")
+    print(f"you have fetched data successfully, congratulations!")
