@@ -149,7 +149,7 @@ class CommentCrawler(object):
 
         for url in url_df:
             try:
-                time.sleep(abs(random.normalvariate(0.01, 0.001)))  # random sleep time
+                time.sleep(abs(random.normalvariate(0.01, 0.01)))  # random sleep time
 
                 try:  # sometimes the website needs to be refreshed (situation comment is loaded unsuccessfully)
                     self.browser.get(url)  # this function may also get timeout exception
