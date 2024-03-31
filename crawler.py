@@ -68,12 +68,11 @@ class PostCrawler(object):
 
             except Exception as e:
                 print(f'{self.symbol}: 第 {current_page} 页出现了错误 {e}')
-                time.sleep(0.1)
+                time.sleep(0.01)
                 self.browser.refresh()
                 self.browser.delete_all_cookies()
                 self.browser.quit()  # if we don't restart the webdriver, our crawler will be restricted access speed
                 self.create_webdriver()  # restart it again!
-                time.sleep(0.1)
 
         end = time.time()
         time_cost = end - self.start  # calculate the time cost
@@ -150,10 +149,10 @@ class CommentCrawler(object):
 
         for url in url_df:
             try:
-                self.browser.get(url)
-                time.sleep(abs(random.normalvariate(0.1, 0.1)))  # random sleep time
+                time.sleep(abs(random.normalvariate(0.01, 0.001)))  # random sleep time
 
                 try:  # sometimes the website needs to be refreshed (situation comment is loaded unsuccessfully)
+                    self.browser.get(url)  # this function may also get timeout exception
                     WebDriverWait(self.browser, 0.2, poll_frequency=0.1).until(
                         EC.presence_of_element_located((By.CSS_SELECTOR, 'div.reply_item.cl')))
                 except TimeoutException:  # timeout situation
