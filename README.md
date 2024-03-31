@@ -50,7 +50,7 @@
 
 ### 1. 下载代码
 
-可以直接 `git clone` 或 `Download ZIP` ，或者点击 [release](https://github.com/zcyeee/EastMoney_Crawler/releases/tag/1.0.0) 下载。
+可以直接 `git clone` 或 `Download ZIP` ，或者点击 [release]([https://github.com/zcyeee/EastMoney_Crawler/releases/tag/1.0.0](https://github.com/zcyeee/EastMoney_Crawler/releases)) 下载。
 
 ### 2. MongoDB 安装
 
