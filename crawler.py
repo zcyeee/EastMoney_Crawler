@@ -41,11 +41,11 @@ class PostCrawler(object):
         page_element = self.browser.find_element(By.CSS_SELECTOR, 'ul.paging > li:nth-child(7) > a > span')
         return int(page_element.text)
 
-    def crawl_post_info(self, page: int):
+    def crawl_post_info(self, page1: int, page2: int):
         self.create_webdriver()
         max_page = self.get_page_num()  # confirm the maximum page number to crawl
-        stop_page = min(page, max_page)  # avoid out of the index
-        current_page = 1
+        current_page = page1  # start page
+        stop_page = min(page2, max_page)  # avoid out of the index
 
         parser = PostParser()  # must be created out of the 'while', as it contains the function about date
         postdb = MongoAPI('post_info', f'post_{self.symbol}')  # connect the collection
