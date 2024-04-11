@@ -74,7 +74,7 @@ brew services start mongodb-community@5.0
 
 a. 爬取发帖信息参数设置示例:
 ```
-thread1 = threading.Thread(target=post_thread, args=('000333', 1, 500))  # 设置想要爬取的股票代码和页数
+thread1 = threading.Thread(target=post_thread, args=('000333', 1, 500))  # 设置想要爬取的股票代码和页数范围
 thread2 = threading.Thread(target=post_thread, args=('000729', 1, 500))  # 可同时进行多个线程
 ```
 第一个参数为 `stock_symbol` ，第二个参数为 `start_page`，第三个参数为 `end_page` 。`thread1` 表示爬取 `000333` 股吧从第 1 页到第 500 页的帖子信息。 
