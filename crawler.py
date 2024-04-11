@@ -63,7 +63,7 @@ class PostCrawler(object):
                     if 'guba.eastmoney.com' in dic['post_url']:  # other website is different!
                         dic_list.append(dic)
                 postdb.insert_many(dic_list)
-                print(f'{self.symbol}: 已经成功爬取 {current_page} 页帖子基本信息，'
+                print(f'{self.symbol}: 已经成功爬取第 {current_page} 页帖子基本信息，'
                       f'进度 {(current_page - page1 + 1)*100/(stop_page - page1 + 1):.2f}%')
                 current_page += 1
 
@@ -83,7 +83,7 @@ class PostCrawler(object):
         row_count = postdb.count_documents()
         self.browser.quit()
 
-        print(f'成功爬取 {self.symbol}股吧 {page2 - page1} 页帖子，共 {row_count} 条，花费 {time_cost/60:.2f} 分钟')
+        print(f'成功爬取 {self.symbol}股吧共 {page2 - page1} 页帖子，共 {row_count} 条，花费 {time_cost/60:.2f} 分钟')
         print(f'帖子的时间范围从 {start_date} 到 {end_date}')
 
 
