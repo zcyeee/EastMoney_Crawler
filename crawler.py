@@ -78,7 +78,7 @@ class PostCrawler(object):
         end = time.time()
         time_cost = end - self.start  # calculate the time cost
         start_date = postdb.find_last()['post_date']
-        end_date = datetime.now().strftime("%Y-%m-%d")  # get the post time range
+        end_date = postdb.find_first()['post_date']  # get the post time range
         # end_date = mongodb.find_one({}, {'_id': 0, 'post_date': 1})['post_date']  # first post is hottest not newest
         row_count = postdb.count_documents()
         self.browser.quit()
