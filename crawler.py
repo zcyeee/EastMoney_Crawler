@@ -83,7 +83,7 @@ class PostCrawler(object):
         row_count = postdb.count_documents()
         self.browser.quit()
 
-        print(f'成功爬取 {self.symbol}股吧共 {stop_page - page1 + 1} 页帖子，共 {row_count} 条，花费 {time_cost/60:.2f} 分钟')
+        print(f'成功爬取 {self.symbol}股吧共 {stop_page - page1 + 1} 页帖子，总计 {row_count} 条，花费 {time_cost/60:.2f} 分钟')
         print(f'帖子的时间范围从 {start_date} 到 {end_date}')
 
 
