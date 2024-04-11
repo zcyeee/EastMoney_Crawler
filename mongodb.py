@@ -24,6 +24,9 @@ class MongoAPI(object):
     def find(self, query1, query2):
         return self.collection.find(query1, query2)
 
+    def find_first(self):
+        return self.collection.find_one(sort=[('_id', 1)])
+    
     def find_last(self):
         return self.collection.find_one(sort=[('_id', -1)])
 
