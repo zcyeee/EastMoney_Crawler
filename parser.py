@@ -1,12 +1,11 @@
 from selenium.webdriver.common.by import By
-from datetime import datetime
 from selenium import webdriver
 
 
 class PostParser(object):
 
     def __init__(self):
-        self.year = datetime.now().year
+        self.year = None
         self.month = 13
         self.id = 0
 
