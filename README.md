@@ -62,7 +62,7 @@ brew services start mongodb-community@5.0
 ```
 如果 MongoDB 运行在本地计算机上，而且也没有修改端口或者添加用户名及密码，那么不需要进行任何操作；若有更改，则需在 `mongodb.py` 中修改对应参数。
 
-最后在 MongoDB 中**创建两个数据库** `post_info` 和 `comment_info` ，分别用来储存 **发帖信息** 和 **评论信息**。
+最后在 MongoDB 中**创建两个名为 `post_info` 和 `comment_info` 的数据库**，分别用来储存 **发帖信息** 和 **评论信息**。
 
 ### 3. Webdriver 安装
 
