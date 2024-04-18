@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium import webdriver
+from datetime import datetime
 
 
 class PostParser(object):
@@ -30,11 +31,22 @@ class PostParser(object):
         return url_element.get_attribute('href')
 
     def get_post_year(self, html):
+        post_url = self.parse_post_url(html)
         driver = webdriver.Chrome()
-        driver.get(self.parse_post_url(html))
-        date_str = driver.find_element(By.CSS_SELECTOR, 'div.newsauthor > div.author-info.cl > div.time').text
-        self.year = int(date_str[:4])
-        driver.quit()
+
+        if 'guba.eastmoney.com' in post_url:  # 这是绝大部分的普通帖子
+            driver.get(post_url)
+            date_str = driver.find_element(By.CSS_SELECTOR, 'div.newsauthor > div.author-info.cl > div.time').text
+            self.year = int(date_str[:4])
+            driver.quit()
+        elif 'caifuhao.eastmoney.com' in post_url:  # 有些热榜帖子会占据第一位，对于这种情况要特殊处理
+            driver.get(post_url)
+            date_str = driver.find_element(By.CSS_SELECTOR, 'div.article.page-article > div.article-head > '
+                                                            'div.article-meta > span.txt').text
+            self.year = int(date_str[:4])
+            driver.quit()
+        else:
+            self.year = datetime.now().year
 
     @staticmethod
     def judge_post_date(html):  # eastmoney has several fucking inaccurate display dates
@@ -55,7 +67,7 @@ class PostParser(object):
                 self.year -= 1
             self.month = month
 
-        if self.id == 1:  # initiate the post year (a little intricate)
+        if self.year is None:  # get the post year through exact post_url
             self.get_post_year(html)
 
         date = f'{self.year}-{month:02d}-{day:02d}'
