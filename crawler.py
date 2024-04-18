@@ -50,7 +50,7 @@ class PostCrawler(object):
         postdb = MongoAPI('post_info', f'post_{self.symbol}')  # connect the collection
 
         while current_page <= stop_page:  # use 'while' instead of 'for' is crucial for exception handling
-            time.sleep(abs(random.normalvariate(0, 0.1)))  # random sleep time
+            time.sleep(abs(random.normalvariate(0, 0.01)))  # random sleep time
             url = f'http://guba.eastmoney.com/list,{self.symbol},f_{current_page}.html'
 
             try:
