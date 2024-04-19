@@ -68,6 +68,10 @@ brew services start mongodb-community@5.0
 
 在电脑上下载 `Chromedriver` ，版本需要与 `Chrome` 一致，安装教程见 [Chromedriver (mac)](https://zhuanlan.zhihu.com/p/657757693)，[Chromedriver (win)](https://blog.csdn.net/weixin_45109684/article/details/117650036)。
 
+如果想要下载历史版本的 `Chrome` / `Chromedriver`，可以前往 [Chrome 历史版本下载](https://vikyd.github.io/download-chromium-history-version/#/)。
+
+ps：推荐电脑上装两个 Chrome，平时使用的那一个自动更新，而历史版本则专门给 webdriver 使用，可以有效避免因为浏览器自动更新导致 webdriver 需要重新下载对应版本的问题。
+
 ### 4. 运行 main.py
 
 进入主程序 `main.py` ，安装没有安装的包，对参数进行修改（ `main.py` 中有相关参数的解释）即可开始爬取（**注意在爬取评论信息前需要先爬取发帖信息**）。
