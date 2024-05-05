@@ -74,6 +74,11 @@ class PostParser(object):
         time = time_str.split(' ')[1]
         return date, time
 
+    @staticmethod
+    def parse_post_author(html):
+        author_element = html.find_element(By.CSS_SELECTOR, 'td:nth-child(4) > div')
+        return author_element.text
+
     def parse_post_info(self, html):
         self.id += 1
         title = self.parse_post_title(html)
@@ -81,6 +86,7 @@ class PostParser(object):
         num = self.parse_comment_num(html)
         url = self.parse_post_url(html)
         date, time = self.parse_post_date(html)
+        author = self.parse_post_author(html)
         post_info = {
             '_id': self.id,
             'post_title': title,
@@ -89,6 +95,7 @@ class PostParser(object):
             'post_url': url,
             'post_date': date,
             'post_time': time,
+            'post_author': author
         }
         return post_info
 
