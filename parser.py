@@ -23,7 +23,11 @@ class PostParser(object):
     @staticmethod
     def parse_comment_num(html):
         num_element = html.find_element(By.CSS_SELECTOR, 'td:nth-child(2) > div')
-        return int(num_element.text)  # be converted to int
+        try:
+            comment_num = int(num_element.text)  # be converted to int
+        except:
+            comment_num = int(float(num_element.text[:-1]) * 10000)  # 有时评论个数会过'万'
+        return comment_num
 
     @staticmethod
     def parse_post_url(html):
