@@ -1,5 +1,4 @@
-from pymongo import MongoClient
-
+import pymongo
 
 class MongoAPI(object):
 
@@ -7,10 +6,14 @@ class MongoAPI(object):
         self.host = host
         self.port = port
         self.db_name = db_name
-        self.collection = collection_name
-        self.client = MongoClient(host=self.host, port=self.port)
+        self.collection_name = collection_name
+        self.client = pymongo.MongoClient(host=self.host, port=self.port)
         self.database = self.client[self.db_name]
-        self.collection = self.database[self.collection]
+        self.collection = pymongo.collection.Collection(
+            database=self.database,
+            name=collection_name,
+            create=True
+        )
 
     def insert_one(self, kv_dict):
         self.collection.insert_one(kv_dict)

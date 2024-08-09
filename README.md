@@ -26,6 +26,7 @@
 
 - `stealth.min.js` : 一个 javascript 文件，用来抹掉 selenium 中的自动化特征。
 
+- `db_post_merge.py`: a utility to merge multiple mongoDB collections into one. Also removes duplicates. 
 ## 爬取逻辑
 
 ### a. 爬取帖子信息
@@ -93,6 +94,21 @@ thread2 = threading.Thread(target=comment_thread_date, args=('000729', '2020-01-
 ### 5. 查看数据
 
 爬取成功后，帖子相关信息以 `post_XXXXXX` 为集合名储存在 `post_info` 数据库中，评论相关信息以 `comment_XXXXXX` 为集合名储存在 `comment_info` 数据库中。
+
+### 6. Merging collections (Optional)
+
+Run `db_post_merge.py`. For example:
+```bash
+python3 db_post_merge.py post_info my_first_collection jumbo`
+```
+to copy posts from `my_first_collection` (duplicates exluded) to `jumbo`. 
+Repeat this for any addtional collections that you want to copy/merge. 
+
+Script assumes that each post has an unique html page ID. This probably only 
+holds for posts from the same sub (e.g. `zssh000001`).
+Therefore, use it with caution.
+
+Object IDs will be re-generated.
 
 ## 踩过的坑
 
