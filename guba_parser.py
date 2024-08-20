@@ -87,7 +87,7 @@ class PostParser(object):
         self.id += 1
         title = self.parse_post_title(html)
         view = self.parse_post_view(html)
-        print(title)
+        # print(title)
         num = self.parse_comment_num(html)
         url = self.parse_post_url(html)
         date, time = self.parse_post_date(html)

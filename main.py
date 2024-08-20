@@ -8,6 +8,9 @@ def post_thread(stock_symbol, start_page, end_page):  # stock_symbol为股票的
     post_crawler = PostCrawler(stock_symbol)
     post_crawler.crawl_post_info(start_page, end_page)
 
+def dl_post_thread(stock_symbol, start_page, end_page):  # stock_symbol为股票的代码，page为想要爬取的页面范围
+    post_crawler = PostCrawler(stock_symbol)
+    post_crawler.cache_post_pages(start_page, end_page)
 
 def comment_thread_date(stock_symbol, start_date, end_date):  # stock_symbol为股票的代码，date为想要爬取的日期范围
     comment_crawler = CommentCrawler(stock_symbol)
@@ -32,7 +35,9 @@ if __name__ == "__main__":
     if (begin_page_number > end_page_number):
         print("Bad args: begin page number is larger than the end")
         exit(2)
-    thread1 = threading.Thread(target=post_thread, 
+    # thread1 = threading.Thread(target=post_thread, 
+    #                            args=('zssh000001', begin_page_number, end_page_number))  # 设置想要爬取的股票代码，开始与终止页数
+    thread1 = threading.Thread(target=dl_post_thread, 
                                args=('zssh000001', begin_page_number, end_page_number))  # 设置想要爬取的股票代码，开始与终止页数
     # thread2 = threading.Thread(target=post_thread, args=('000729', 1, 500))  # 可同时进行多个线程
 
