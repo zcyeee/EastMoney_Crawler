@@ -37,7 +37,7 @@ class MongoAPI(object):
         return self.collection.count_documents({})
 
     def update_one(self, kv_dict):
-        self.collection.update_one(kv_dict, {'$set': kv_dict}, upsert=True)
+        raise NotImplementedError
 
     def drop(self):
         self.collection.drop()
