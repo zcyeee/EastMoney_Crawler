@@ -62,9 +62,13 @@ class PostParser(object):
             return True
 
     def parse_post_date(self, html):
-        time_element = html.find_element(By.CSS_SELECTOR, 'div.update.pub_time')
-        time_str = time_element.text
-        month, day = map(int, time_str.split(' ')[0].split('-'))
+        try:
+            time_element = html.find_element(By.CSS_SELECTOR, 'div.update.pub_time')
+            time_str = time_element.text
+            month, day = map(int, time_str.split(' ')[0].split('-'))
+        except Exception as e:  # some post is different, just ignore it (very seldom)
+            print('Fail to find the date of the post.', '\n', '{}'.format(e))
+            return None, None
 
         if self.judge_post_date(html):
             if self.month < month == 12:
