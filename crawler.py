@@ -59,7 +59,7 @@ class PostCrawler(object):
                 list_item = self.browser.find_elements(By.CSS_SELECTOR, '.listitem')  # includes all posts on one page
                 for li in list_item:  # get each post respectively
                     dic = parser.parse_post_info(li)
-                    if 'guba.eastmoney.com' in dic['post_url']:  # other website is different!
+                    if 'guba.eastmoney.com/news' in dic['post_url']:  # other website is different!
                         dic_list.append(dic)
                 postdb.insert_many(dic_list)
                 print(f'{self.symbol}: 已经成功爬取第 {current_page} 页帖子基本信息，'
