@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium import webdriver
 from datetime import datetime
+import re
 
 
 class PostParser(object):
@@ -34,6 +35,12 @@ class PostParser(object):
         url_element = html.find_element(By.CSS_SELECTOR, 'td:nth-child(3) > div > a')
         return url_element.get_attribute('href')
 
+    @staticmethod
+    def remove_char(date_str):
+        # 使用正则表达式去掉所有汉字字符（处理日期中包含“修改”字符的情况）
+        cleaned_str = re.sub(r'[^\d\s:-]', '', date_str)
+        return cleaned_str.strip()
+
     def get_post_year(self, html):
         post_url = self.parse_post_url(html)
         driver = webdriver.Chrome()
@@ -41,13 +48,13 @@ class PostParser(object):
         if 'guba.eastmoney.com' in post_url:  # 这是绝大部分的普通帖子
             driver.get(post_url)
             date_str = driver.find_element(By.CSS_SELECTOR, 'div.newsauthor > div.author-info.cl > div.time').text
-            self.year = int(date_str[:4])
+            self.year = int(self.remove_char(date_str)[:4])
             driver.quit()
         elif 'caifuhao.eastmoney.com' in post_url:  # 有些热榜帖子会占据第一位，对于这种情况要特殊处理
             driver.get(post_url)
             date_str = driver.find_element(By.CSS_SELECTOR, 'div.article.page-article > div.article-head > '
                                                             'div.article-meta > span.txt').text
-            self.year = int(date_str[:4])
+            self.year = int(self.remove_char(date_str)[:4])
             driver.quit()
         else:
             self.year = datetime.now().year
