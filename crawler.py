@@ -57,6 +57,8 @@ class PostCrawler(object):
                 self.browser.get(url)  # many times our crawler is restricted access (especially after 664 pages)
                 dic_list = []
                 list_item = self.browser.find_elements(By.CSS_SELECTOR, '.listitem')  # includes all posts on one page
+                if current_page == 1:
+                    list_item = list_item[1:]  # 剔除首页的置顶帖（新增的广告）
                 for li in list_item:  # get each post respectively
                     dic = parser.parse_post_info(li)
                     if 'guba.eastmoney.com/news' in dic['post_url']:  # other website is different!
