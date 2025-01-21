@@ -68,9 +68,11 @@ brew services start mongodb-community@5.0
 
 在电脑上下载 `Chromedriver` ，版本需要与 `Chrome` 一致，安装教程见 [Chromedriver (mac)](https://zhuanlan.zhihu.com/p/657757693)，[Chromedriver (win)](https://blog.csdn.net/weixin_45109684/article/details/117650036)。
 
-如果想要下载历史版本的 `Chrome` / `Chromedriver`，可以前往 [Chrome 历史版本下载](https://vikyd.github.io/download-chromium-history-version/#/)。
+~~下载历史版本的 `Chrome` / `Chromedriver`，可以前往 [Chrome 历史版本下载](https://vikyd.github.io/download-chromium-history-version/#/)。~~（不推荐，貌似停止更新了）
 
-ps：推荐电脑上装两个 Chrome，平时使用的那一个自动更新，而历史版本则专门给 webdriver 使用，可以有效避免因为浏览器自动更新导致 webdriver 需要重新下载对应版本的问题。
+下载测试版本的 `Chrome` / `Chromedriver`，可以前往 [Chrome 测试版本下载](https://googlechromelabs.github.io/chrome-for-testing/#dev)。（推荐）
+
+ps：推荐电脑上装两个 Chrome，平时使用的那一个自动更新，而测试版专门给 webdriver 使用，可以有效避免因为浏览器自动更新导致 webdriver 需要重新下载对应版本的问题。
 
 ### 4. 运行 main.py
 
@@ -89,6 +91,8 @@ thread1 = threading.Thread(target=comment_thread_date, args=('000333', '2020-01-
 thread2 = threading.Thread(target=comment_thread_date, args=('000729', '2020-01-01', '2023-12-31'))
 ```
 第一个参数为 `stock_symbol` ，第二个参数为 `start_date` ，第三个参数为 `end_date` 。`thread1` 表示爬取 `2020-01-01` 到 `2023-12-31` 范围中 `000333` 股吧帖子下的评论信息。
+
+**注意：确保设置爬取的 comment 的日期范围是已经爬取了的 post 信息的日期范围的子集！**（否则会报错 [KeyError: 'post_url'](https://github.com/zcyeee/EastMoney_Crawler/issues/11)）
 
 ### 5. 查看数据
 
